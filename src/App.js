@@ -2,10 +2,12 @@ import './App.css';
 import { useState } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import blurryCar from './assets/blurryCar.jpg';
 
 function App() {
   const [vehicle, setVehicle] = useState('');
-  const [extras, setExtras] = useState('');
+  const [extras, setExtras] = useState([]);
+  const [openExtras, setOpenExtras] = useState(false);
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
   const [budget, setBudget] = useState('');
@@ -16,10 +18,28 @@ function App() {
     console.log({ vehicle, extras, startDate, endDate, budget, comment });
   };
 
-  const formatDate = (date) => date ? date.toLocaleDateString() : "";
+  const toggleExtras = () => {
+    setOpenExtras(!openExtras);
+  };
+
+  const handleExtrasChange = (e) => {
+    const value = e.target.value;
+    if (extras.includes(value)) {
+      setExtras(extras.filter(item => item !== value));
+    } else {
+      setExtras([...extras, value]);
+    }
+  };
 
   return (
     <div className="App">
+      <div className="title-container">
+        <h1 className="app-title">Car4You</h1>
+        <p className="app-para">Rent your dream car easily!</p>
+      </div>
+
+      <img src={blurryCar} alt="Blurry Car" className="bottom-left-car" />
+
       <div className="form-card">
         <h2>Book your car</h2>
         <form onSubmit={handleSubmit}>
@@ -38,22 +58,8 @@ function App() {
             endDate={endDate}
             onChange={(update) => setDateRange(update)}
             placeholderText="Rental period"
-            className="input"
+            className="input input-with-icon"
             dateFormat="dd/MM/yyyy"
-            customInput={
-              <input
-                type="text"
-                className="input"
-                value={
-                  startDate && endDate
-                    ? `Rental period: from ${formatDate(startDate)} to ${formatDate(endDate)}`
-                    : startDate
-                    ? `Rental period: from ${formatDate(startDate)} to …`
-                    : ""
-                }
-                readOnly
-              />
-            }
           />
 
           <select value={vehicle} onChange={(e) => setVehicle(e.target.value)} className="input">
@@ -64,12 +70,26 @@ function App() {
             <option value="Luxury">Luxury</option>
           </select>
 
-          <select value={extras} onChange={(e) => setExtras(e.target.value)} className="input">
-            <option value="">Extras</option>
-            <option value="GPS">GPS</option>
-            <option value="Child Seat">Child Seat</option>
-            <option value="Insurance">Insurance</option>
-          </select>
+          <div className="dropdown-multi">
+            <div className="dropdown-header" onClick={toggleExtras}>
+              {extras.length > 0 ? `Extras: ${extras.join(', ')}` : 'Select Extras'}
+            </div>
+            {openExtras && (
+              <div className="dropdown-menu">
+                {['GPS', 'Child Seat', 'Insurance'].map(extra => (
+                  <label key={extra} className="dropdown-item">
+                    <input
+                      type="checkbox"
+                      value={extra}
+                      checked={extras.includes(extra)}
+                      onChange={handleExtrasChange}
+                    />
+                    {extra}
+                  </label>
+                ))}
+              </div>
+            )}
+          </div>
 
           <select value={budget} onChange={(e) => setBudget(e.target.value)} className="input">
             <option value="">Budget</option>

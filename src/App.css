@@ -1,33 +1,86 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
 
 .App {
   min-height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f0f0ff;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding-top: 4rem;
+  padding-right: 50px;
+  background-color: #5937E0;
   font-family: Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.bottom-left-car {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: auto;
+  height: 40vh;
+  max-width: none;
+  z-index: 0;
+}
+
+.title-container {
+  position: absolute;
+  top: 4rem;
+  left: 5rem;
+  z-index: 2;
+  color: white;
+}
+
+.app-title {
+  font-size: 48px;
+  font-weight: bold;
+  margin: 0;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+}
+
+.app-para {
+  font-size: 24px;
+  font-weight: normal;
+  margin: 0.5rem 0 0 0;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
 }
 
 .form-card {
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.95);
   padding: 30px 25px;
   border-radius: 20px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   width: 350px;
-}
-
-.form-card h2 {
-  text-align: center;
-  margin-bottom: 20px;
+  z-index: 2;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .row {
   display: flex;
   gap: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
-.input {
+.row input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 14px;
+  margin-bottom: 0;
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.input, select.input, textarea.input, .react-datepicker__input-container input {
   width: 100%;
   padding: 10px 12px;
   margin-bottom: 12px;
@@ -35,6 +88,9 @@
   border: 1px solid #ccc;
   box-sizing: border-box;
   font-size: 14px;
+  position: relative;
+  background-color: #f0f0f0;
+  color: #333;
 }
 
 textarea.input {
@@ -55,4 +111,96 @@ textarea.input {
 
 .submit-btn:hover {
   background-color: #ff8c00;
+}
+
+.dropdown-multi {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.dropdown-header {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background: #f0f0f0;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  padding: 10px;
+  z-index: 10;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.dropdown-item input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.react-datepicker-wrapper {
+  width: 100% !important;
+}
+
+.react-datepicker__input-container {
+  width: 100% !important;
+}
+
+.react-datepicker__input-container input {
+  width: 100% !important;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 14px;
+  margin-bottom: 12px;
+  position: relative;
+  padding-right: 35px;
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.react-datepicker__input-container input::after {
+  content: '\1F4C5';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 16px;
+  color: #888;
+}
+
+@media (max-width: 400px) {
+  .title-container,
+  .bottom-left-car {
+    display: none;
+  }
+
+  .App {
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+  }
+
+  .form-card {
+    width: 100%;
+    max-width: 350px;
+  }
 }
