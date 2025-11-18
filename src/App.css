@@ -20,10 +20,10 @@ html, body {
 
 .bottom-left-car {
   position: absolute;
-  bottom: 20px;
+  bottom: 5rem;
   left: 0;
   width: auto;
-  height: 40vh;
+  height: 60vh;
   max-width: none;
   z-index: 0;
 }
