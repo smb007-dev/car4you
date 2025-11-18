@@ -113,45 +113,59 @@ textarea.input {
   background-color: #ff8c00;
 }
 
-.dropdown-multi {
-  position: relative;
+.checkbox-list {
   margin-bottom: 12px;
 }
 
-.dropdown-header {
-  padding: 10px 12px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  background: #f0f0f0;
-  cursor: pointer;
-  font-size: 14px;
-  color: #333;
+.checkbox-list p {
+  margin: 0 0 6px 0;
+  font-weight: bold;
 }
 
-.dropdown-menu {
-  position: absolute;
-  top: 110%;
-  left: 0;
-  width: 100%;
-  background: #fff;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  padding: 10px;
-  z-index: 10;
-}
-
-.dropdown-item {
+.checkbox-list label {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 0;
-  cursor: pointer;
+  gap: 6px;
+  margin-bottom: 6px;
   font-size: 14px;
 }
 
-.dropdown-item input[type="checkbox"] {
+.slider-container {
+  margin-bottom: 12px;
+}
+
+.slider-container label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+.slider-container input[type="range"] {
+  width: 100%;
+  -webkit-appearance: none;
+  height: 8px;
+  border-radius: 5px;
+  background: #ccc;
+  outline: none;
   cursor: pointer;
+}
+
+.slider-container input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #ffa500;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+.slider-container input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #ffa500;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
 }
 
 .react-datepicker-wrapper {
@@ -176,7 +190,7 @@ textarea.input {
   color: #333;
 }
 
-.react-datepicker__input-container input::after {
+.input-with-icon::after {
   content: '\1F4C5';
   position: absolute;
   right: 10px;

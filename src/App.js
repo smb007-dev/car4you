@@ -7,19 +7,14 @@ import blurryCar from './assets/blurryCar.jpg';
 function App() {
   const [vehicle, setVehicle] = useState('');
   const [extras, setExtras] = useState([]);
-  const [openExtras, setOpenExtras] = useState(false);
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
-  const [budget, setBudget] = useState('');
+  const [budget, setBudget] = useState(100);
   const [comment, setComment] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log({ vehicle, extras, startDate, endDate, budget, comment });
-  };
-
-  const toggleExtras = () => {
-    setOpenExtras(!openExtras);
   };
 
   const handleExtrasChange = (e) => {
@@ -62,7 +57,7 @@ function App() {
             dateFormat="dd/MM/yyyy"
           />
 
-          <select value={vehicle} onChange={(e) => setVehicle(e.target.value)} className="input">
+          <select value={vehicle} onChange={(e) => setVehicle(e.target.value)} className="input custom-select">
             <option value="">Vehicle selection</option>
             <option value="City">City</option>
             <option value="Family">Family</option>
@@ -70,33 +65,32 @@ function App() {
             <option value="Luxury">Luxury</option>
           </select>
 
-          <div className="dropdown-multi">
-            <div className="dropdown-header" onClick={toggleExtras}>
-              {extras.length > 0 ? `Extras: ${extras.join(', ')}` : 'Select Extras'}
-            </div>
-            {openExtras && (
-              <div className="dropdown-menu">
-                {['GPS', 'Child Seat', 'Insurance'].map(extra => (
-                  <label key={extra} className="dropdown-item">
-                    <input
-                      type="checkbox"
-                      value={extra}
-                      checked={extras.includes(extra)}
-                      onChange={handleExtrasChange}
-                    />
-                    {extra}
-                  </label>
-                ))}
-              </div>
-            )}
+          <div className="checkbox-list">
+            <p>Extras auswählen:</p>
+            {['GPS', 'Child Seat', 'Insurance'].map(extra => (
+              <label key={extra}>
+                <input
+                  type="checkbox"
+                  value={extra}
+                  checked={extras.includes(extra)}
+                  onChange={handleExtrasChange}
+                />
+                {extra}
+              </label>
+            ))}
           </div>
 
-          <select value={budget} onChange={(e) => setBudget(e.target.value)} className="input">
-            <option value="">Budget</option>
-            <option value="100-200">100 - 200</option>
-            <option value="200-300">200 - 300</option>
-            <option value="300-400">300 - 400</option>
-          </select>
+          <div className="slider-container">
+            <label>Budget: {budget} CHF</label>
+            <input
+              type="range"
+              min="50"
+              max="400"
+              step="50"
+              value={budget}
+              onChange={(e) => setBudget(e.target.value)}
+            />
+          </div>
 
           <textarea
             value={comment}
