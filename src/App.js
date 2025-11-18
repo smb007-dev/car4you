@@ -39,12 +39,12 @@ function App() {
         <h2>Book your car</h2>
         <form onSubmit={handleSubmit}>
           <div className="row">
-            <input type="text" placeholder="Name..." />
-            <input type="text" placeholder="Vorname..." />
+            <input type="text" placeholder="Lastname..." />
+            <input type="text" placeholder="Firstname..." />
           </div>
           <div className="row">
             <input type="email" placeholder="Email..." />
-            <input type="tel" placeholder="Telefon..." />
+            <input type="tel" placeholder="Telephone..." />
           </div>
 
           <DatePicker
@@ -66,7 +66,7 @@ function App() {
           </select>
 
           <div className="checkbox-list">
-            <p>Extras auswählen:</p>
+            <p>Choose extras:</p>
             {['GPS', 'Child Seat', 'Insurance'].map(extra => (
               <label key={extra}>
                 <input
