@@ -44,7 +44,7 @@ function App() {
           </div>
           <div className="row">
             <input type="email" placeholder="Email..." />
-            <input type="tel" placeholder="Telephone..." />
+            <input type="tel" placeholder="Telefonnummer" pattern="^(\+41\s?|\0)?[1-9]\d\s?\d{3}\s?\d{2}\s?\d{2}$" title="Bitte eine gültige Schweizer Telefonnummer eingeben (z. B. +41 79 123 45 67)"/>
           </div>
 
           <DatePicker
